@@ -1,15 +1,25 @@
-import Button from '../components/Button';
-import Link from '../components/Link';
-import HeroImage from '../assets/hero.png';
-import HeroPlaceholderImage from '../assets/hero-placeholder.png';
-import styles from './HomePage.module.css';
+import Button from "../components/Button";
+import Link from "../components/Link";
+import HeroImage from "../assets/hero.png";
+import HeroPlaceholderImage from "../assets/hero-placeholder.png";
+import styles from "./HomePage.module.css";
+import { useEffect } from "react";
+import { useNavigate } from "react-router-dom";
+import { useAuth } from "../contexts/AuthProvider";
 
 function HomePage() {
+  const { user } = useAuth();
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    if (user) navigate("/me");
+  }, [user, navigate]);
+
   return (
     <div>
       <header className={styles.Header}>
         <h1 className={styles.Heading}>
-          나의 링크들을 <span className={styles.accent}>하나로</span>{' '}
+          나의 링크들을 <span className={styles.accent}>하나로</span>{" "}
           관리하세요.
         </h1>
         <p className={styles.Description}>

@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Label from "../components/Label";
 import Input from "../components/Input";
@@ -10,13 +10,17 @@ import styles from "./LoginPage.module.css";
 import { useAuth } from "../contexts/AuthProvider";
 
 function LoginPage() {
-  const { login } = useAuth();
+  const { user, login } = useAuth();
 
   const [values, setValues] = useState({
     email: "",
     password: "",
   });
   const navigate = useNavigate();
+
+  useEffect(() => {
+    if (user) navigate("/me");
+  }, [user, navigate]);
 
   function handleChange(e) {
     const { name, value } = e.target;

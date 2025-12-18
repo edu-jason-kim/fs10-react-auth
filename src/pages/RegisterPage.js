@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Label from "../components/Label";
 import Input from "../components/Input";
@@ -11,7 +11,7 @@ import { useToaster } from "../contexts/ToasterProvider";
 import { useAuth } from "../contexts/AuthProvider";
 
 function RegisterPage() {
-  const { register } = useAuth();
+  const { user, register } = useAuth();
   const [values, setValues] = useState({
     name: "",
     email: "",
@@ -20,6 +20,10 @@ function RegisterPage() {
   });
   const navigate = useNavigate();
   const toast = useToaster();
+
+  useEffect(() => {
+    if (user) navigate("/me");
+  }, [user, navigate]);
 
   function handleChange(e) {
     const { name, value } = e.target;

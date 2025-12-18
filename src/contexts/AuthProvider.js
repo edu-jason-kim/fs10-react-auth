@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom";
 
 const AuthContext = createContext({
   user: null,
+  isPending: true,
   login: () => {},
   logout: () => {},
   register: () => {},
@@ -11,11 +12,19 @@ const AuthContext = createContext({
 
 export function AuthProvider({ children }) {
   const [user, setUser] = useState(null);
+  const [isPending, setIsPending] = useState(true);
 
   async function getMe() {
-    const response = await axios.get("/users/me");
-    const user = response.data;
-    setUser(user);
+    try {
+      setIsPending(true);
+      const response = await axios.get("/users/me");
+      const user = response.data;
+      setUser(user);
+    } catch (error) {
+      console.log(error);
+    } finally {
+      setIsPending(false);
+    }
   }
 
   async function login({ email, password }) {
@@ -31,11 +40,11 @@ export function AuthProvider({ children }) {
   }
 
   useEffect(() => {
-    getMe();
+    getMe(); // 비동기
   }, []);
 
   return (
-    <AuthContext.Provider value={{ user, login, logout, register }}>
+    <AuthContext.Provider value={{ user, isPending, login, logout, register }}>
       {children}
     </AuthContext.Provider>
   );
@@ -51,10 +60,10 @@ export function useAuth(required) {
   }
 
   useEffect(() => {
-    if (required && !context.user) {
+    if (required && !context.user && !context.isPending) {
       navigate("/login");
     }
-  }, [required, context.user, navigate]);
+  }, [required, context.user, context.isPending, navigate]);
 
   return context;
 }

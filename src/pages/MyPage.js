@@ -17,9 +17,20 @@ function MyPage() {
   const navigate = useNavigate();
 
   async function getMyLinks() {
-    const res = await axios.get("/users/me/links");
-    const nextLinks = res.data;
-    setLinks(nextLinks);
+    try {
+      const res = await axios.get("/users/me/links");
+      const nextLinks = res.data;
+      setLinks(nextLinks);
+    } catch (error) {
+      // 만약에 요청이 401이 발생하면, refresh를 시도한다.
+      // if (error.response.status === 401) {
+      //   await axios.post("/auth/token/refresh");
+      //   // 새롭게 받은 토큰을 활용하여 기존 요청을 재시도
+      //   const res = await axios.get("/users/me/links");
+      //   const nextLinks = res.data;
+      //   setLinks(nextLinks);
+      // }
+    }
   }
 
   function handleEditClick(linkId) {

@@ -21,3 +21,8 @@ Content-Type: application/json
 
 GET https://learn.codeit.kr/api/link-service/users/me
 Cookie: access-token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMSIsImlhdCI6MTc2NjAzNDQxNiwiZXhwIjoxNzY2MDM0NTk2fQ.ztp_uvId4EKqFYHTbuVqWYpmmzI2oB2QvacFXzDZ9G8;
+
+###
+
+POST https://learn.codeit.kr/api/link-service/auth/token/refresh
+Cookie: refresh-token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMSIsImlhdCI6MTc2NjAzOTM1MSwiZXhwIjoxNzY2NjQ0MTUxfQ.fZ7k4iIul77qqT9h4McA8gEE0Ty4wkpk--xXZrH9XIQ;

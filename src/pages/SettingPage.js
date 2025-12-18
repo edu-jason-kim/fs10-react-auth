@@ -10,7 +10,7 @@ import styles from "./SettingPage.module.css";
 import { useAuth } from "../contexts/AuthProvider";
 
 function SettingPage() {
-  const { user } = useAuth();
+  const { user } = useAuth(true);
   const [initialAvatar, setInitialAvatar] = useState("");
   const [values, setValues] = useState({
     avatar: "",

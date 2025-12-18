@@ -1,5 +1,6 @@
 import { createContext, useContext, useEffect, useState } from "react";
 import axios from "../lib/axios";
+import { useNavigate } from "react-router-dom";
 
 const AuthContext = createContext({
   user: null,
@@ -40,10 +41,20 @@ export function AuthProvider({ children }) {
   );
 }
 
-export function useAuth() {
+// useAuth(true): 사용자 정보가 있어야만 하는 페이지
+export function useAuth(required) {
   const context = useContext(AuthContext);
+  const navigate = useNavigate();
+
   if (!context) {
     throw new Error("반드시 AuthProvider 안에서 사용해야 합니다.");
   }
+
+  useEffect(() => {
+    if (required && !context.user) {
+      navigate("/login");
+    }
+  }, [required, context.user, navigate]);
+
   return context;
 }

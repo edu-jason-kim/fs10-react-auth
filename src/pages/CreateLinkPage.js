@@ -5,8 +5,10 @@ import Label from '../components/Label';
 import Input from '../components/Input';
 import Button from '../components/Button';
 import styles from './CreateLinkPage.module.css';
+import { useAuth } from '../contexts/AuthProvider';
 
 function CreateLinkPage() {
+  useAuth(true)
   const [values, setValues] = useState({
     title: '',
     url: '',

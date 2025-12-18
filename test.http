@@ -1,0 +1,23 @@
+POST https://learn.codeit.kr/api/link-service/users
+Content-Type: application/json
+
+{
+  "email": "edu.jason.kim@gmail.com",
+  "name": "김선재",
+  "password": "qlalfqjsgh"
+}
+
+###
+
+POST https://learn.codeit.kr/api/link-service/auth/login
+Content-Type: application/json
+
+{
+  "email": "edu.jason.kim@gmail.com",
+  "password": "qlalfqjsgh"
+}
+
+###
+
+GET https://learn.codeit.kr/api/link-service/users/me
+Cookie: access-token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMSIsImlhdCI6MTc2NjAzNDQxNiwiZXhwIjoxNzY2MDM0NTk2fQ.ztp_uvId4EKqFYHTbuVqWYpmmzI2oB2QvacFXzDZ9G8;

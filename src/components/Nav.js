@@ -3,8 +3,6 @@ import Button from "./Button";
 import Link from "./Link";
 import Avatar from "./Avatar";
 import logoImage from "../assets/logo.svg";
-import { useEffect, useState } from "react";
-import axios from "../lib/axios";
 import { useAuth } from "../contexts/AuthProvider";
 
 export function PublicNav() {
@@ -21,7 +19,7 @@ export function PublicNav() {
 
 function Nav() {
   /** @TODO 서버에서 내 정보를 가져온다 */
-  const { user } = useAuth()
+  const { user, logout } = useAuth();
 
   return (
     <header className={styles.Container}>
@@ -36,7 +34,7 @@ function Nav() {
               <Avatar src={user.avatar} size="small" />
               <div className={styles.Divider} />
               <Button
-                as={Link}
+                onClick={logout}
                 appearance="secondary"
                 /** @TODO 로그아웃 구현 */
               >

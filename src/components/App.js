@@ -1,4 +1,4 @@
-import { AuthProvider } from "../contexts/AuthProvider";
+import { AuthProvider, useAuth } from "../contexts/AuthProvider";
 import ToasterProvider from "../contexts/ToasterProvider";
 
 function Providers({ children }) {
@@ -9,8 +9,23 @@ function Providers({ children }) {
   );
 }
 
+function AuthGate({ children }) {
+  const { isPending } = useAuth();
+
+  if (isPending) {
+    // 인증이 다 처리될 때까지 기다리자
+    return null;
+  }
+
+  return children;
+}
+
 function App({ children }) {
-  return <Providers>{children}</Providers>;
+  return (
+    <Providers>
+      <AuthGate>{children}</AuthGate>
+    </Providers>
+  );
 }
 
 export default App;

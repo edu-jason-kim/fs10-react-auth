@@ -21,14 +21,7 @@ export function AuthProvider({ children }) {
       const user = response.data;
       setUser(user);
     } catch (error) {
-      // 만약에 요청이 401이 발생하면, refresh를 시도한다.
-      // if (error.response.status === 401) {
-      //   await axios.post("/auth/token/refresh");
-      //   // 새롭게 받은 토큰을 활용하여 기존 요청을 재시도
-      //   const response = await axios.get("/users/me");
-      //   const user = response.data;
-      //   setUser(user);
-      // }
+      console.error(error);
     } finally {
       setIsPending(false);
     }
@@ -39,7 +32,10 @@ export function AuthProvider({ children }) {
     await getMe();
   }
 
-  async function logout() {}
+  async function logout() {
+    await axios.delete("/auth/logout");
+    setUser(null);
+  }
 
   async function register({ email, password, name }) {
     await axios.post("/users", { name, email, password });

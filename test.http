@@ -26,3 +26,8 @@ Cookie: access-token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMSIsImlhdC
 
 POST https://learn.codeit.kr/api/link-service/auth/token/refresh
 Cookie: refresh-token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMSIsImlhdCI6MTc2NjAzOTM1MSwiZXhwIjoxNzY2NjQ0MTUxfQ.fZ7k4iIul77qqT9h4McA8gEE0Ty4wkpk--xXZrH9XIQ;
+
+###
+
+DELETE https://learn.codeit.kr/api/link-service/auth/logout
+Cookie: access-token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMSIsImlhdCI6MTc2NjEwNzQ4MiwiZXhwIjoxNzY2MTA3NjYyfQ.auCw1UzViZvTtEGfCUCI8cYufxC6Lnl4HW2xcn0gJJU;

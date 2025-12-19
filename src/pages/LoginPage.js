@@ -79,6 +79,8 @@ function LoginPage() {
           appearance="outline"
           as={Link}
           /** @TODO 구글 로그인 구현 */
+          to="/api/auth/google"
+          reloadDocument
         >
           <img src={GoogleImage} alt="Google" />
           구글로 시작하기
